@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>isi nya apa yah</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: black;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+
+        .home {
+            text-align: center;
+        }
+
+        a {
+            display: inline-block;
+            padding: 15px 30px;
+            font-size: 20px;
+            cursor: pointer;
+            color: black;
+            background: #ffb6c1;
+            border: 3px solid white;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(255,182,193,0.8);
+            margin-top: 15px;
+            position: relative;
+            z-index: 999;
+            text-decoration: none;
+        }
+
+        a:hover {
+            transform: scale(1.05);
+            background: #ff8fa3;
+        }
+    </style>
+</head>
+<body>
+    <div class="home">
+        <h1>kira kira isi nya apa yah</h1>
+        <a href="index.html" id="goBtn">liat yuk</a>
+
+        <audio id="music" preload="auto" loop>
+            <source src="season.mp3.mp3" type="audio/mpeg" />
+        </audio>
+    </div>
+
+    <script>
+        const btn = document.getElementById('goBtn');
+        const audio = document.getElementById('music');
+
+        btn.addEventListener('click', async function () {
+            try {
+                audio.volume = 100;
+                await audio.play();
+            } catch (err) {
+                console.log('Audio belum bisa diputar:', err);
+            }
+
+            window.location.href = 'index.html';
+        });
+    </script>
+</body>
+</html>

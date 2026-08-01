@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>I Love U ❤️</title>
+<div id="message">
+    <h1>for u</h1>
+    <p>
+        pesan ini aku buat dengan sepenh hati ku<br>
+        ini juga bentuk trimakasi ku atas semua usaha yang sudah kamu lakukan untuk ku<br>
+        walaupun sederhana tapi aku harap kamu bisa merasakannya<br>
+        terima kasih sudah ada di hidupku<br>
+        aku harap kamu selalu bahagia dan sehat selalu<br>
+        u know that i love uuu hehehhe<br>
+        -from vina
+    </p>
+</div>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:black;
+    overflow:hidden;
+}
+
+canvas{
+    display:block;
+}
+
+#message{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+
+    color:#ffb6c1;
+    text-align:center;
+
+    font-family:Arial, Helvetica, sans-serif;
+
+    opacity:0;
+    transition:opacity 1s ease-in-out;
+}
+#message.show{
+    opacity:1;
+}
+</style>
+
+</head>
+<body>
+
+<canvas id="canvas"></canvas>
+
+<script>
+const canvas = document.getElementById("canvas");
+const ctx = canvas.getContext("2d");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+ctx.fillStyle = "#ffb6c1";
+ctx.font = "12px Arial";
+
+let i = 0;
+let offsetX = 0;
+
+function drawHeart(){
+
+    if(i >= 1200) return;
+
+    let angle = i * (Math.PI * 2) / 120;
+    let scale = 14;
+
+    let x = 16 * Math.pow(Math.sin(angle),3) * scale;
+
+    let y = (
+        13*Math.cos(angle)
+        -5*Math.cos(2*angle)
+        -2*Math.cos(3*angle)
+        -Math.cos(4*angle)
+    ) * scale;
+
+    ctx.fillText(
+        "I love u",
+        canvas.width/2 + x + offsetX,
+        canvas.height/2 - y
+    );
+
+    i++;
+    
+    if(i >= 120){
+        i = 0;
+        offsetX +=25;
+
+        if(offsetX > 35){
+            offsetX = 0;
+        }
+    }
+
+    requestAnimationFrame(drawHeart);
+}
+
+drawHeart();
+
+setTimeout(()=>{
+  canvas.style.opacity = 0;
+  setTimeout(()=>{
+    document.getElementById("message").classList.add("show");
+  },2000);
+
+},8000);
+</script>
+</body>
+</html>
